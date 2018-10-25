@@ -6,22 +6,32 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
   <title>JavaScript Tutorial</title>
 
-  <!-- Link to EXTERNAL JavaScript-->
-  <script language="javascript" src="addfunction2.js"></script>
+  <style>
+    #h3style
+    {
+      color: gray;
+    }
+  </style>
+
+ 
 </head>
 
-<body>
+<body onResize="changeImage();" onload="alert('website Loaded');">
   <!-- if you re gonna use javascript lang then use javascript both not JavaScript-->
-  <script language="javascript" type="text/javascript">
-      document.write("5 + 25 = "+addThese(5,25)+"<br />");
-  </script>
+  <!-- didnt understand that wHY MY RESİZİNG İS NOT WORKİNG!!!! -->
+  
   <noscript>
-    <h3>This site requires JavaScript</h3>
+    <h3>This site require JavaScript</h3>
   </noscript>
+  
+  <script language="javascript" type="text/javascript">
+   
+  </script>
 </body>
 
 </html>
 
+<!-- !!!!!!!!!!!!!! JUST A REMINDER FOR BASIC SYNTAX !!!!!!!!!!!!!-->
 <!-- shift + alt + F to organize -->
 
 <!-- string func.
@@ -158,4 +168,180 @@ var str_var = "5";
       {
         document.write(count + "<br />");
       }
+-->
+
+<!--  Link to EXTERNAL JavaScript
+   <script language="javascript" src="addfunction2.js"></script>
+-->
+
+
+<!-- SECOND VİDEO ABOUT İNSİDE HTML AND JAVASCRIPT
+    ------------------ Javascript func -------------------
+
+     function changeImage() // it didnt work idk why?
+      {
+        alert('change image');
+        document.getElementById("littlebrain").style.height="35%";
+        document.getElementById("littlebrain").style.width="35%";
+        return true;
+      }
+      function alertme()
+      {
+        alertmsg = document.littlebrain.src + "\nHeight: " + document.littlebrain.height + "\nWidth: " + document.littlebrain.width;
+        alert(alertmsg);
+        return true;
+      }
+      function changeColor()
+      {
+        document.getElementById("h3style").style.color="red";
+        document.getElementById("h3style").firstChild.nodeValue="Excited";
+        return true;
+      }
+      function changeAgain()
+      {
+        document.getElementById("h3style").style.color="gray";
+        document.getElementById("h3style").firstChild.nodeValue="Bored";
+        return true;
+      }
+      function showPara()
+      {
+        document.getElementById("first").style.visibility=(document.formex.firstpara.checked) ? "visible" : "hidden"
+        document.getElementById("second").style.visibility=(document.formex.secondpara.checked) ? "visible" : "hidden"
+        document.getElementById("third").style.visibility=(document.formex.thirdpara.checked) ? "visible" : "hidden"
+        return true;
+      }
+      ------------------ Javascript func -------------------
+      ------------------ HTML Code       -----------------
+      <img src="little-brain.svg" alt="littlebrain" onclick="alertme();" ondblclick="alert('You double clicked')" />
+  <h3 id="h3style" onmouseover="changeColor();" onmouseout="changeAgain();">Rollover</h3>
+  <p id="first">This is a paragraph</p>
+  <p id="second">This is a paragraph</p>
+  <p id="third">This is a paragraph</p>
+
+  <form name="formex">
+    <input type="checkbox" name="firstpara" onclick="showPara()" /> First paragraph <br />
+    <input type="checkbox" name="secondpara" onclick="showPara()" /> Second paragraph <br />
+    <input type="checkbox" name="thirdpara" onclick="showPara()" /> Third paragraph <br />
+  </form>
+   ------------------ HTML Code       -----------------
+-->
+
+
+<!--
+   ---THİS İS OUR SCRİPT ABOUT GETTING KEYBOARD AND MOUSE INPUT!---
+     
+      var mie = (navigator.appName == "Microsoft Internet Explorer") ? true : false  // this is for if it is explorer
+
+      if(!mie)
+      {
+        document.captureEvents(Event.MOUSEMOVE); //taking events
+        document.captureEvents(Event.MOUSEDOWN);//taking events
+        document.captureEvents(Event.KEYPRESS);//taking events
+      }
+      
+      document.onmousemove = mousePos;    //when evet mouse move call mousePos func. ALSO YOU SHOULD CALL THE FUNC WITHOUT BRACKET IF U USE e VALUE.
+      document.onkeypress = keyPressed;  //
+      document.onmousedown = mouseClicked; 
+      
+      var mouseClick = 0;
+      var keyClicked = 0;
+      var mouseX = 0;
+      var mouseY = 0;
+
+      function mousePos(e) // e event being passed value. 
+      {
+        if(!mie)   // in other than internet explorer is like that
+        {
+          mouseX = e.pageX;
+          mouseY = e.pageY;
+        }
+        else // this is for internet explorer
+        {
+          mouseX = event.clientX + document.body.scrollLeft;
+          mouseY = event.clientY + document.body.scrollTop;
+        }
+        document.formex.mousex.value = mouseX; // send value to input bar
+        document.formex.mousey.value = mouseY;
+        return true;
+      }
+
+      function keyPressed(e)  // keypress func
+      {
+        if (mie)  // this is for internet explorer
+        {
+          e = window.event;
+          keyClicked = e.keyCode;
+        }
+        else
+        { // this code change char code to string again.
+          keyClicked = String.fromCharCode(e.charCode);
+        }
+        if(!keyClicked) // if key is not clicked return false
+        {
+          return false;
+        }
+        document.formex.keypress.value= keyClicked;
+        return true;
+      }
+      
+      function mouseClicked(e)  
+      {
+        if(mie)  
+        {
+          switch(event.button)  
+          {
+            case 0 :   
+              document.formex.mousebutton.value = "Left";
+              break;
+            case 1 : 
+              document.formex.mousebutton.value = "Middle";
+              break;
+            default:
+              document.formex.mousebutton.value = "Right";
+              break;
+          }
+          return false;
+        }
+        else
+        {
+          switch(e.which)
+          {
+            case 1 : // case should start with 1 not 0 (output wrong)
+              document.formex.mousebutton.value = "Left";
+              break;
+            case 2 : 
+              document.formex.mousebutton.value = "Middle";
+              break;
+            default:
+              document.formex.mousebutton.value = "Right";
+              break;
+          }
+          return true;
+        }
+      }
+
+ //other Basic stuff we can use !!!!!! 
+OnAbort  -> called when a page load is interrupted
+OnError   -> when ever page error occurs
+OnKeyDown  -> key button pressed but not released
+OnKeyUp     -> key pressed and released 
+OnMouseUp    -> track mouse has been released
+OnReset       -> called whenever reset button is clicked
+OnSubmit       -> submit button is clicked
+OnUnload        -> somebody try to leaves a page!
+
+
+
+      
+---THİS İS OUR SCRİPT ABOUT GETTING KEYBOARD AND MOUSE INPUT!---
+----------------THİS İS OUR FORM BASİCALLY --------------------------
+<form name="formex">
+    <p>Text input</p>
+    <input type="text" name="mousex"   /> Mouse X Position <br />
+    <input type="text" name="mousey"   /> Mouse Y Position <br />
+    <input type="text" name="keypress"   /> Key Pressed <br />
+    <input type="text" name="mousebutton"   /> Mouse Button pressed <br />
+  </form>
+  ---------------THİS İS OUR FORM BASİCALLY ------------------------
+
 -->
