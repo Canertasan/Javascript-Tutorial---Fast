@@ -2,35 +2,34 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<head>          
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-  <title>JavaScript Tutorial</title>  
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>JavaScript Tutorial</title>
+    <script language="javascript" type="text/javascript">
+        < !--Hide javascript
 
-  <style>
-    #h3style  
-    { 
-      color: gray;             
-    }
-  </style>      
 
- 
+
+        -->
+    </script>
+    <noscript>
+        <h3>This site require JavaScript</h3>
+    </noscript>
 </head>
-<body onResize="changeImage();" onload="alert('website Loaded');">
-  <!-- if you re gonna use javascript lang then use javascript both not JavaScript-->
-  <!-- didnt understand that wHY MY RESİZİNG İS NOT WORKİNG!!!! -->
 
-  <noscript>  
-    <h3>This site require JavaScript</h3>
-  </noscript>
-  
-  <script language="javascript" type="text/javascript">
-    <!--  Hide javascript
-    
-    -->
-  </script>
+<body>
+
+
+
+
+
+
 </body>
 
 </html>
+
+<!-- if you re gonna use javascript lang then use javascript both not JavaScript-->
+<!-- didnt understand that wHY MY RESİZİNG İS NOT WORKİNG!!!! -->
 
 <!-- !!!!!!!!!!!!!! JUST A REMINDER FOR BASIC SYNTAX !!!!!!!!!!!!!-->
 <!-- shift + alt + F to organize -->
@@ -345,4 +344,431 @@ OnUnload        -> somebody try to leaves a page!
   </form>
   ---------------THİS İS OUR FORM BASİCALLY ------------------------
 
+-->
+
+<!--    --------HOW TO MAKE FUNCTION OBJECT(CLASSES,Inheritence, polymorphism, method overloaded)--------
+
+     function Animal() //this is how we create constructor.
+        {
+            this.name = "No Name";
+            this.sound = "Grrr";
+            this.owner = "No Owner";
+        }    
+
+        Animal.prototype.setOwner = function(newOwner)
+        {
+            if(typeof newOwner != 'undefined')
+            {
+                this.owner = newOwner;
+            }
+            else
+            {
+                document.write("Please enter a valid owner");
+            }
+        }
+
+        Animal.prototype.getOwner = function()
+        {
+            return this.owner;
+        }
+
+        Animal.prototype.setName = function(newName)
+        {
+            if(typeof newName != 'undefined')
+            {
+                this.name = newName;
+            }
+            else
+            {
+                document.write("Please enter a valid name");
+            }
+        }
+
+        Animal.prototype.getName = function()
+        {
+            return this.name;
+        }
+
+        Animal.prototype.setSound = function(newSound)
+        {
+            if(typeof newSound != 'undefined')
+            {
+                this.sound = newSound;
+            }
+            else
+            {
+                document.write("Please enter a valid sound");
+            }
+        }
+
+        Animal.prototype.getSound = function()
+        {
+            return this.sound;
+        }
+        
+        var dog = new Animal();
+
+        dog.setName("Spot");
+        dog.setOwner("Paul");
+        dog.setSound("Woof");
+        
+        document.write(dog.getName()+"<br />");
+        document.write(dog.getOwner()+"<br />");
+        document.write(dog.getSound()+"<br />");
+        document.write("<br />");
+
+        function Cat()
+        {
+            Animal.call(this); // this is animal class which is super
+            this.mode = "Happy";
+        }
+        
+        Cat.prototype = new Animal(); //set animal class as super class
+        Cat.prototype.constructor = Cat; // this is for constructor for cat.
+
+        Cat.prototype.getMode = function()
+        {
+            return this.mode;
+        }
+
+       Cat.prototype.setMode = function(newMode)
+        {
+            if(typeof newMode != 'undefined')
+            {
+                this.sound = newMode;
+            }
+            else
+            {
+                document.write("Please enter a valid sound");
+            }
+        } 
+        
+        var sophie = new Cat;
+
+        sophie.setName("Sophie");
+        sophie.setOwner("Caner");
+        sophie.setSound("Meow");
+        sophie.setMode("Crazy");
+
+        document.write(sophie.getName()+"<br />");
+        document.write(sophie.getOwner()+"<br />");
+        document.write(sophie.getSound()+"<br />");
+        document.write(sophie.getMode()+"<br />");
+        document.write("<br />");
+
+        //is sophie is actually a cat object then it returns true!
+        document.write(sophie instanceof Cat); 
+        document.write("<br />");
+        document.write(typeof(Cat));
+        document.write("<br />");
+        document.write(typeof(sophie));
+
+        setStuff(newName)  //Method overloaded
+        setStuff(newName,newSound)
+        setStuff(newName,newSound,newOwner)
+
+        Cat.prototype.setStuff = function(newName,newSound,newOwner)
+        {
+            if((typeof newName != 'undefined') && (typeof newSound != 'undefined') && (typeof newOwner != 'undefined'))
+            {
+                Cat.prototype.setStuff = function(newName,newSound,newOwner)
+                {
+                    //like this
+                }
+            }
+            else
+            {
+                document.write("Please enter a valid sound");
+            }
+        
+        }
+        
+        //polymorphism
+        // doAnimalStuff(Animal) {document.write(Animal.getName())}
+        // doAnimalStuff(Cat) {document.write(Cat.getName())}
+
+        --------HOW TO MAKE FUNCTION OBJECT(CLASSES,Inheritence, polymorphism, method overloaded)--------
+-->
+
+<!--      ------------------------------------JAVASCRIPT ARRAYS------------------------------------
+     var sampArray10 = new Array(10); // Creates an array with 10 elements
+         
+        var sampArray = new Array();
+        sampArray[0] = "Derek";
+        sampArray[1] = "123 Main St";
+        sampArray[2] = 36;
+         
+        for(i in sampArray)
+        {
+            document.write(sampArray[i] + "<br />");
+        }
+         
+        document.write("Length of Array: " + sampArray.length + "<br />");
+         
+        var sampArray2 = new Array("Sally", "221 Main St.", 34); // Short way to create an array
+        var sampArray3 = ["Sally", "221 Main St.", 34]; // Shorter way to create an array
+         
+        sampArray4 = sampArray.concat(sampArray2); // Join 2 arrays
+         
+        for(i in sampArray4)
+        {
+            document.write(sampArray4[i] + "<br />");
+        }
+         
+        document.write("Array String: " + sampArray.join(" ") + "<br />"); // Converts array into a string
+        document.write("Array Slice: " + sampArray.slice(0,2) + "<br />"); // Returns part of an array
+        document.write("Array Reversed: " + sampArray.reverse() + "<br />"); // Returns the array reversed
+         
+        // ------ Array Splicing
+         
+        var numList = [2,8,1,7,6,5,3,4];
+        document.write("Sort Array: " + numList.sort() + "<br />"); // Returns the array sorted
+        document.write("Spliced Array: " + numList.splice(0,3) + "<br />"); // Splices indexes from array
+        document.write("Array After Splice: " + numList + "<br />"); // Returns the array spliced
+        document.write("Replace Values in Array: " + numList.splice(0,3,9,10,11) + "<br />"); // Splices indexes from array
+        document.write("Array After Splice: " + numList + "<br />"); // Returns the array spliced
+         
+        // ----- Multi-Dimensional Arrays
+         
+        var multiArray = [[1,2,3,4,5], [6,7,8,9,10]];
+         
+        document.write(multiArray[1][3] + "<br />");
+         
+        for(i = 0; i < multiArray.length; i++)
+        {
+            for(var j = 0; j < multiArray[i].length; j++)
+            {
+                document.write(multiArray[i][j] + "<br />");
+            }
+        }
+         
+        // ----- Functions
+        // You create functions so that you can write code once and then execute it any number of times
+        // JavaScript doesn't check if you passed the right number of arguments or datatype
+        // If you pass more arguments than are expected, they are ignored
+         
+        function addThese(num1,num2)
+        {
+            return num1 + num2;
+        }
+         
+        document.write("1 + 2 = " + addThese(1,2) + "<br />"); // Returns the array spliced
+         
+        function addMany(a,b,c,d,e,f)
+        {
+            var i=1;
+            var sum=1;
+            document.write("Arguments Length: " + arguments.length + "<br />");
+            while(i < arguments.length)
+            {
+                sum = sum + arguments[i];
+                i++;
+            }
+             
+            document.write("Sum of arguments: " + sum + "<br />");
+        }
+         
+        addMany(1,1,1,1,1,2);
+         
+        // ----- Function Scope
+         
+        var scopeTest = 1;
+         
+        function scopey() // JS doesn't have block level scope
+        {
+            // All variables defined in a function are considered defined before they are given a value
+            /*
+            function s() { document.write("In function s: " + scopeTest + "<br />"); }
+            s();
+            */
+            document.write("In Scopey 1st: " + scopeTest + "<br />");
+            var scopeTest = 2;
+            document.write("In Scopey 2nd: " + scopeTest + "<br />");
+            return true;
+        }
+        scopey();
+        document.write("Out of Scopey: " + scopeTest + "<br />");
+
+     ------------------------------------JAVASCRIPT ARRAYS------------------------------------    
+-->
+
+<!--  This is javascript childNode exercise.........
+     ------------ HTML CODE -----------
+    <span id="spanEx" onclick="editNodeText('spanEx','New Test is Here')" >Change this text</span><br />
+    <div id="divEx" onclick="editNodeText2('divEx','New Text in Div')">
+    <b>Same Bold Text</b><br />
+    <i>Italic Text</i><br />
+    </div>
+
+    ----------------JAVASCRIPT CODE -----------------
+    function editNodeText(id,newText)
+            {
+                var node = document.getElementById(id);
+                while(node.firstChild)
+                {
+                    node.removeChild(node.firstChild);
+                }
+                node.appendChild(document.createTextNode(newText));
+
+                document.getElementById(id).style.color="red";
+                document.getElementById(id).style.position="fixed";
+                document.getElementById(id).style.top="100px";
+                document.getElementById(id).style.left="300px";
+            }
+
+            function editNodeText2(id,newText)
+            {
+                var node = document.getElementById(id);
+                node.removeChild(node.childNodes[0]);
+                node.childNodes[2].nodeValue=newText;
+                var newNode = document.createElement('hr');
+                node.appendChild(newNode);
+                var randTextNode = document.createTextNode("I'm random");
+                node.appendChild(randTextNode);
+            }
+    ------------------JAVASCRIPT CODE-----------------
+
+-->
+
+<!--
+        --------------------REGULAR EXPRESSİON-----------------------
+
+        // A regular expression is a series of codes used to describe a series of characters
+// Just like you surround strings with quotes, you surround a regex with slashes /
+// var regPat = /[1-9]{1,5}\s[A-Z]{2}\b[a-z]{2,}/
+// String that starts with 1 to 5 Numbers, a space, 2 Uppercase letters, Word Boundary, 2 or more lowercase
+// var regPat = new RegExp(“\d{1,5}\s[A-Z]{2}\b[a-z]{2,}”);
+
+var longStr= “Derek 123 Main St Pittsburgh 15457 (412)-555-5555 dbanas@newthinktank.com”;
+
+document.write(longStr.search(/[A-Za-z]{1,15}\s/) + “<br />”);
+
+// . – Represents any 1 character except a newline
+// [^0-9] – Represents anything that isn’t a number
+// \w – A-Z, a-z, 0-9, or _
+// \W – Opposite of \w
+// \S – Opposite of \s
+// \D – Opposite of \d
+// \B – Anything that’s not a word boundary
+// [0-9]? – Represents zero to 1 numbers
+// [0-9]+ – Represents 1 or more numbers
+// [0-9]* – Represents 0 or more numbers
+// [Aa] – Represents 1 A or 1 a
+// ^ – Represents the beginning of the string
+// $ – Represents the end of the string
+
+document.write(longStr.search(/[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/) + “<br />”);
+
+document.write(longStr.replace(/\d{5}/, “55555”) + “<br />”);
+document.write(longStr + “<br />”);
+
+matchArray = longStr.match(/\d{4,5}/g);
+document.write(matchArray + “<br />”);
+
+// g – Represents a global or whole string search
+// i – Represents a case insensitive search
+// m – $ represents the end of the line or string whether it contains \n or not
+
+//
+var regexPat = /\d{3,5}/;
+document.write((regexPat instanceof RegExp) + “<br />”); // Regex are objects of type RegExp
+
+var regMatch = regexPat.exec(longStr);
+document.write(regMatch + “<br />”);
+document.write(regMatch.index + “<br />”);
+    ----------------REGULAR EXPRESSİON--------------------
+-->
+
+<!--    ---------FORM ERROR SHOWING (HTML)----------------
+    <div>
+        Enter your name:
+        <input id="name" name="name" type="text" size="30" onblur="isTheFieldEmpty(this,document.getElementById('name_help'))"/>
+        <span id="name_help"></span>
+    </div>
+
+    <div>
+            Enter your street address:
+            <input id="street" name="street" type="text" size="30" onblur="isAddressOk(this,document.getElementById('street_help'))"/>
+            <span id="street_help"></span>
+    </div>
+
+    <div>
+            Enter your city:
+            <input id="city" name="city" type="text" size="30" onblur="isTheFieldEmpty(this,document.getElementById('city_help'))"/>
+            <span id="city_help"></span>
+    </div>
+
+    <div>
+            Enter your state code:
+            <input id="state" name="state" type="text" size="2" onblur="isStateOk(this,document.getElementById('state_help'))"/>
+            <span id="state_help"></span>
+    </div>
+
+    <div>
+            Enter your phone number:
+            <input id="phone" name="phone" type="text" size="15" onblur="isPhoneOk(this,document.getElementById('phone_help'))"/>
+            <span id="phone_help"></span>
+    </div>
+
+    <div>
+            Enter your email:
+            <input id="email" name="email" type="text" size="15" onblur="isEmailOk(this,document.getElementById('email_help'))"/>
+            <span id="email_help"></span>
+    </div>
+    ---------FORM ERROR SHOWING (HTML)-------------------
+
+    ---------FORM ERROR SHOWING (JAVASCRIPT)----------------
+function editNodeText(regex,input,helpId,helpMessage)
+            {
+                if(!regex.test(input))
+                {
+                    if(helpId != null)
+                    {
+                       while(helpId.firstChild)
+                       {
+                           helpId.removeChild(helpId.firstChild);
+                       } 
+                    }
+                    helpId.appendChild(document.createTextNode(helpMessage));
+                    return false;
+                }
+                else
+                {
+                    if (helpId != null)
+                    {
+                        while(helpId.firstChild)
+                       {
+                           helpId.removeChild(helpId.firstChild);
+                       } 
+                       return true;
+                    }
+                }
+            }
+
+            function isTheFieldEmpty(inputField, helpId)
+            {
+                return editNodeText(/^[A-Za-z\.\'\-]{2,15}\s?[A-Za-z\.\'\-]{2,15}\s?[A-Za-z\.\'\-]{2,15}/, inputField.value, helpId, "Please enter a valid name");
+            }
+
+            function isAddressOk(inputField, helpId) 
+            {  
+                return editNodeText(/^[A-Za-z0-9\.\’ \-]{5,30}$/, inputField.value, helpId, "Enter a Street (Ex.1234 Main St.)");
+            }
+
+            function isStateOk(inputField, helpId)
+            {
+                return editNodeText(/^A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]$/i, inputField.value, helpId, "Enter a State Code in Uppercase (Ex.NY, PA, CA)");
+            }
+
+            function isPhoneOk(inputField, helpId) 
+            {  
+                return editNodeText(/^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/, inputField.value, helpId, "Enter a Phone Number (Ex.412-828-3000)");
+            }
+
+           function isEmailOk(inputField, helpId)
+            {
+                return editNodeText(/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, inputField.value, helpId, "Please enter a valid email");
+            }
+                
+     ---------FORM ERROR SHOWING (JAVASCRIPT)----------------
 -->
