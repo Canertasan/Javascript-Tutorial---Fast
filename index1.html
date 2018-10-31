@@ -6,11 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <title>JavaScript Tutorial</title>
     <script language="javascript" type="text/javascript">
-        < !--Hide javascript
-
-
-
-        -->
+      
     </script>
     <noscript>
         <h3>This site require JavaScript</h3>
@@ -18,9 +14,6 @@
 </head>
 
 <body>
-
-
-
 
 
 
@@ -771,4 +764,95 @@ function editNodeText(regex,input,helpId,helpMessage)
             }
                 
      ---------FORM ERROR SHOWING (JAVASCRIPT)----------------
+-->
+
+<!--    ----------HTML CODE TRY CATCH -------------
+    <div>Enter the numbers you'd like to divide: <br />
+        <input id="topvar" name="topvar" type="text" size="10" /><br />
+        <input id="botvar" name="botvar" type="text" size="10" onblur="divideMe(document.getElementById('answer'))" /><br />
+        <span id="answer"></span>
+    </div>
+          ----------HTML CODE TRY CATCH -------------
+         ---------JAVASCRIPT CODE TRY CATCH -------------
+            function divideMe(helpId)
+        {
+            var topVar = document.getElementById("topvar").value;
+            var botVar = document.getElementById("botvar").value;
+
+            try {
+                if(!topVar || !botVar){
+                    throw new Error("Please enter a value in both fields.");
+                }
+                else if(isNaN(topVar) ||isNaN(botVar)){//check func is it integer!
+                    throw new Error("Please enter a only numbers.");
+                }
+                else if(botVar==0){
+                    throw new Error("Can't divide by 0.");
+                }
+                if(helpId != null)
+                {
+                    while(helpId.firstChild)
+                        helpId.removeChild(helpId.firstChild);
+                }
+                var answer = topVar + " / " + botVar + " = " + topVar/botVar
+                helpId.appendChild(document.createTextNode(answer));
+            }
+            catch(errMsg) {
+                if(helpId != null)
+                {
+                    while(helpId.firstChild)
+                        helpId.removeChild(helpId.firstChild);
+                }
+                helpId.appendChild(document.createTextNode(errMsg));
+            }
+            return true;
+        }
+         ---------JAVASCRIPT CODE TRY CATCH -------------
+-->
+
+
+<!--   ------------------HTML CODE COOKIESSS -----------------
+        <p>Enter Your First Name
+    <input type="text" id="firstname" onblur="createCookie('firstname');" /><br /></p>
+    
+    <p>Enter Your Last Name
+    <input type="text" id="lastname" onblur="createCookie('lastname');" /><br /></p> 
+
+    <p>Cookie To Delete
+    <input type="text" id="deleteme" onblur="deleteCookie();" /><br /></p> 
+
+    <p>Cookie To Get
+    <input type="text" id="getme" onblur="getACookie();" /><br /></p> 
+    
+        ------------------HTML CODE COOKIESSS -----------------
+       ----------------JAVASCRIPT CODE COOKIESSS -----------------
+        function getACookie(){
+                var cookieName = document.getElementById("getme").value;
+                var allCookies = document.cookie.split(';');
+                var cookieData = "";
+                for(var i = 0; i < allCookies.length; i++){//index of if it is not find a location then give -1...
+                    if((allCookies[i].indexOf(cookieName)) != -1){
+                        var match = allCookies[i].replace(" ", "");
+                        cookieData = match.substr((cookieName.lenght + 1));
+                        alert(cookieName + " " + cookieData);
+                    }
+                }
+            }  
+
+            function createCookie(newCookie){
+                var expDate = new Date();
+
+                expDate.setMonth(expDate.getMonth()+1);
+
+                var cookieVal = document.getElementById(newCookie).value;
+
+                document.cookie = newCookie + "=" + cookieVal + ";path=/;expires="+ expDate.toGMTString();
+            }
+
+            function deleteCookie(){
+                var cookieToDel = document.getElementById("deleteme").value;
+
+                createCookie(cookieToDel, "", -1);
+            }
+         ----------------JAVASCRIPT CODE COOKIESSS -----------------
 -->
